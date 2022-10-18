@@ -1,0 +1,37 @@
+ <div id="top-container" class="container-fluid">
+        <h1 id="main-title" class="text-center">Aqui temos a vaga que você tanto procura</h1>
+        <p id="main-subtitle" class="text-center">Somos um site feito para você que procura um novo emprego na área de tecnologia. Temos vagas para todos os perfils, home office, híbrido, presencial, e até mesmo de outros países.</p>
+        <form action="/" method="GET" id="search-form" class="form-inline">
+            <div class="form-group col-md-10">
+                <input type="text" class="form-control" id="job" name="job" placeholder="Digite a vaga que deseja buscar">
+            </div>
+            <div class="md-2">
+                <button type="submit" class="btn btn-primary">Procurar</button>
+            </div>
+        </form>
+</div>
+<main>
+    <div class="container" id="jobs-container">
+        <div class="row">
+            <div class="col-md-12">
+                {{#if pesquisar}}
+                    <h2 id="job-list-">Buscando vaga que contem: {{pesquisar}}</h2>
+                {{else}}
+                    <h2 id="job-list-">Veja as novas vagas em destaque</h2>
+                {{/if}}
+                <ul id="job-list" class="list-group">
+                    {{#each dados}}
+                        <li class="list-group-item {{#if dataValues.new_jobs}}new-job{{/if}}">
+                            <img src="/src/foto-empresa.jpeg" alt="Empresas">
+                            <p>{{dataValues.company}}</p>
+                            <h2>{{dataValues.title}}</h2>
+                            <p>R${{dataValues.salary}}</p>
+                            <span class="new-job-label">Nova</span>
+                            <a class="btn btn-primary">Ver vaga</a>
+                        </li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</main>
