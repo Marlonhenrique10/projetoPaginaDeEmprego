@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const jobs = require('./models/Job');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
+const moment = require('moment');
 
 app.listen(PORT, function(){
     console.log(`O express está rodando na porta ${PORT}`);
@@ -24,6 +25,15 @@ app.set('views', path.join(__dirname, 'views'));
 // Aqui estou definindo qual será o arquivo principal view do projeto
 app.engine('handlebars', exphbs.engine({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
+
+app.engine('handlebars', exphbs.engine({
+    defaultLayout: 'main',
+    helpers: {
+        formatDate: (date) => {
+            return moment(date).format('DD/MM/YYYY')
+        }
+    }
+}))
 
 // static folder
 app.use(express.static(path.join(__dirname, 'public')));
